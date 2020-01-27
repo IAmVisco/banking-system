@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment')
 const User = require('../models/user')
 
 class UsersService {
