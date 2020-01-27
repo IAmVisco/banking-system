@@ -1,13 +1,14 @@
 {% extends "index.njk" %}
 
 {% block content %}
-    <h1>Users page</h1>
+    <h1 class="page-title">Users page</h1>
+    <a class="btn btn-success">Create</a>
     <ul>
         {% for user in users %}
             <li>{{ user.first_name }} {{ user.last_name }}</li>
         {% endfor %}
     </ul>
-{#    <form action="/users" method="post">#}
-{#        <button class="btn btn-primary">Post</button>#}
-{#    </form>#}
+    {#    <form action="/users" method="post">#}
+    {#        <button class="btn btn-primary">Post</button>#}
+    {#    </form>#}
 {% endblock %}
