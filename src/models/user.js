@@ -12,6 +12,11 @@ const UserSchema = new Schema({
     type: String,
     trim: true,
     required: true
+  },
+  middle_name: {
+    type: String,
+    trim: true,
+    required: true
   }
 })
 

@@ -6,6 +6,10 @@ class UsersService {
 
     return users
   }
+
+  async createUser(data) {
+
+  }
 }
 
 const service = new UsersService()

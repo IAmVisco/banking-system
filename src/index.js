@@ -4,13 +4,14 @@ const reload = require('reload')
 const express = require('express')
 const nunjucks = require('nunjucks')
 
-const mongoose = require('./config/database')
+require('./config/database')
 const userRoutes = require('./routes/users')
 
 const app = express()
 const port = process.env.PORT || 3001
 
-mongoose.connection.on('error', (err) => console.error('MongoDB connection error', err))
+app.use(express.static(path.join(__dirname, 'public')))
+
 nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape: true,
   express: app
