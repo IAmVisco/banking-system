@@ -1,3 +1,4 @@
+const moment = require('moment');
 const User = require('../models/user')
 
 class UsersService {
@@ -9,25 +10,12 @@ class UsersService {
 
   async createUser(data) {
     console.log(data)
-    // const user = await User.create({
-    //   first_name,
-    //   last_name,
-    //   middle_name,
-    //   birth_date,
-    //   passport_series,
-    //   passport_number,
-    //   passport_issuer,
-    //   passport_issue_date,
-    //   id_number,
-    //   birth_place,
-    //   current_city,
-    //   current_address,
-    //   registered_city,
-    //   martial_status,
-    //   citizenship,
-    //   disability,
-    //   retired
-    // })
+
+    return User.create({
+      ...data,
+      birth_date: moment(data.birth_date),
+      retired: !!data.retired
+    })
   }
 }
 

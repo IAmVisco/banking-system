@@ -2,13 +2,10 @@
 
 {% block content %}
     <h1 class="page-title">Users page</h1>
-    <a class="btn btn-success">Create</a>
+    <a class="btn btn-success" href="users/create">Create</a>
     <ul>
         {% for user in users %}
             <li>{{ user.first_name }} {{ user.last_name }}</li>
         {% endfor %}
     </ul>
-    {#    <form action="/users" method="post">#}
-    {#        <button class="btn btn-primary">Post</button>#}
-    {#    </form>#}
 {% endblock %}

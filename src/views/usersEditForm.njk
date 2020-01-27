@@ -1,0 +1,88 @@
+{% extends "index.njk" %}
+
+{% block content %}
+    <h1 class="page-title">Create user</h1>
+    <form action="/users" method="post" class="crud-form">
+        <div class="from-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="first_name" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="last_name" />
+        </div>
+        <div class="form-group">
+            <label for="middleName">Middle Name</label>
+            <input type="text" class="form-control" id="middleName" name="middle_name" />
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Birth date</label>
+            <input type="text" class="form-control" id="birthDate" name="birth_date" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="passportSeries">Passport series</label>
+            <input type="text" class="form-control" id="passportSeries" name="passport_series" />
+        </div>
+        <div class="form-group">
+            <label for="passportNumber">Passport number</label>
+            <input type="text" class="form-control" id="passportNumber" name="passport_number" />
+        </div>
+        <div class="form-group">
+            <label for="passportIssuer">Passport issuer</label>
+            <input type="text" class="form-control" id="passportIssuer" name="passport_issuer" />
+        </div>
+        <div class="form-group">
+            <label for="passportIssueDate">Passport issue date</label>
+            <input type="text" class="form-control" id="passportIssueDate" name="passport_issue_date" />
+        </div>
+        <div class="form-group">
+            <label for="idNumber">ID number</label>
+            <input type="text" class="form-control" id="idNumber" name="id_number" />
+        </div>
+        <div class="form-group">
+            <label for="birthPlace">Birth place</label>
+            <input type="text" class="form-control" id="birthPlace" name="birth_place" />
+        </div>
+        <div class="form-group">
+            <label for="currentCity">Current city</label> {# TODO: MAKE SELECT #}
+            <input type="text" class="form-control" id="currentCity" name="current_city" />
+        </div>
+        <div class="form-group">
+            <label for="currentAddress">Current address</label>
+            <input type="text" class="form-control" id="currentAddress" name="current_address" />
+        </div>
+        <div class="form-group">
+            <label for="registerCity">Register city</label> {# TODO: MAKE SELECT #}
+            <input type="text" class="form-control" id="registerCity" name="registered_city" />
+        </div>
+        <div class="form-group">
+            <label for="martialStatus">Martial status</label> {# TODO: MAKE SELECT #}
+            <input type="text" class="form-control" id="martialStatus" name="martial_status" />
+        </div>
+        <div class="form-group">
+            <label for="citizenship">Citizenship</label> {# TODO: MAKE SELECT #}
+            <input type="text" class="form-control" id="citizenship" name="citizenship" />
+        </div>
+        <div class="form-group">
+            <label for="disability">Disability</label> {# TODO: MAKE SELECT #}
+            <input type="text" class="form-control" id="disability" name="disability" />
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="retired" value="true">Retired
+            </label>
+        </div>
+        <button class="btn btn-primary">Create</button>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script>
+      TinyDatePicker('#birthDate', {
+        format: (date) => date.toLocaleDateString('ru-RU')
+      })
+      TinyDatePicker('#passportIssueDate', {
+        format: (date) => date.toLocaleDateString('ru-RU')
+      })
+    </script>
+{% endblock %}

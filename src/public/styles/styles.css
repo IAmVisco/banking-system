@@ -2,12 +2,11 @@
   display: inline;
 }
 
+.crud-form {
+  max-width: 560px;
+}
+
 .sidenav {
   margin-top: 50px;
   /*background-color: #eb0c0c;*/
 }
-
-/*ul {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*}*/

@@ -16,8 +16,12 @@ router.get('/', asyncHandler(async (req, res) => {
   res.render('users.njk', { users })
 }))
 
+router.get('/create', asyncHandler(async (req, res) => {
+  res.render('usersEditForm.njk')
+}))
+
 router.post('/', asyncHandler(async (req, res) => {
-  await usersService.createUser(req)
+  await usersService.createUser(req.body)
 
   const users = await usersService.getAllUsers()
 
