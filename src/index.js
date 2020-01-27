@@ -16,6 +16,10 @@ nunjucks.configure(path.join(__dirname, 'views'), {
   express: app
 })
 
+app.get('/', (req, res) => {
+  res.render('index.njk')
+})
+
 app.use('/users', userRoutes)
 
 const server = http.createServer(app)
