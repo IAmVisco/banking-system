@@ -35,17 +35,23 @@ router.get('/:id', asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
   const { _method } = req.body
 
-  if (_method === 'post') {
-    await usersService.createUser(req.body)
-  } else if (_method === 'put') {
-    await usersService.updateUser(req.body._id, req.body)
-  } else {
-    throw Error('Wrong update method')
+  try {
+    if (_method === 'post') {
+      await usersService.createUser(req.body)
+    } else if (_method === 'put') {
+      await usersService.updateUser(req.body._id, req.body)
+    }
+  } catch (e) {
+    // return res.status(403).send()
   }
 
-  const users = await usersService.getAllUsers()
+  res.redirect('/users')
+}))
 
-  res.render('users.njk', { users, moment })
+router.post('/delete', asyncHandler(async (req, res) => {
+  await usersService.deleteUserById(req.body._id)
+
+  res.redirect('/users')
 }))
 
 module.exports = router

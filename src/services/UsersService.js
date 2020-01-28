@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment')
 const User = require('../models/user')
 
 const City = require('../models/city')
@@ -54,6 +54,10 @@ class UsersService {
       passport_issue_date: moment(data.passport_issue_date, 'DD.MM.YYYY'),
       retired: !!data.retired
     })
+  }
+
+  async deleteUserById (_id) {
+    await User.deleteOne({ _id })
   }
 }
 
