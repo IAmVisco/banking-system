@@ -12,7 +12,8 @@
     "reload": "^3.0.4"
   },
   "scripts": {
-    "start": "nodemon ./src/index.js -e njk,js,css",
+    "start": "node ./src/index.js",
+    "watch": "nodemon ./src/index.js -e njk,js,css",
     "lint": "eslint **/*.js"
   },
   "devDependencies": {
