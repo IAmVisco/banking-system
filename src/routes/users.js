@@ -35,14 +35,10 @@ router.get('/:id', asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
   const { _method } = req.body
 
-  try {
-    if (_method === 'post') {
-      await usersService.createUser(req.body)
-    } else if (_method === 'put') {
-      await usersService.updateUser(req.body._id, req.body)
-    }
-  } catch (e) {
-    // return res.status(403).send()
+  if (_method === 'post') {
+    await usersService.createUser(req.body)
+  } else if (_method === 'put') {
+    await usersService.updateUser(req.body._id, req.body)
   }
 
   res.redirect('/users')

@@ -11,16 +11,19 @@
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" id="firstName"
+                   onkeypress="return /\p{L}/u.test(event.key)"
                    name="first_name" value="{{ user.first_name }}" required>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
             <input type="text" class="form-control" id="lastName"
+                   onkeypress="return /\p{L}/u.test(event.key)"
                    name="last_name" value="{{ user.last_name }}" required>
         </div>
         <div class="form-group">
             <label for="middleName">Middle Name</label>
             <input type="text" class="form-control" id="middleName"
+                   onkeypress="return /\p{L}/u.test(event.key)"
                    name="middle_name" value="{{ user.middle_name }}" required>
         </div>
         <div class="form-group">
@@ -31,11 +34,13 @@
         <div class="form-group">
             <label for="passportSeries">Passport series</label>
             <input type="text" class="form-control" id="passportSeries"
+                   onkeypress="return /[a-z]/i.test(event.key)" maxlength="2"
                    name="passport_series" value="{{ user.passport_series }}" required>
         </div>
         <div class="form-group">
             <label for="passportNumber">Passport number</label>
             <input type="text" class="form-control" id="passportNumber"
+                   onkeypress="return /\d+/i.test(event.key)" minlength="7" maxlength="7"
                    name="passport_number" value="{{ user.passport_number }}" required>
         </div>
         <div class="form-group">
@@ -50,7 +55,7 @@
         </div>
         <div class="form-group">
             <label for="idNumber">ID number</label>
-            <input type="text" class="form-control" id="idNumber"
+            <input type="text" class="form-control" id="idNumber" minlength="14" maxlength="14"
                    name="id_number" value="{{ user.id_number }}" required>
         </div>
         <div class="form-group">

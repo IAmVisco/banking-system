@@ -38,6 +38,7 @@ class UsersService {
 
     return User.create({
       ...data,
+      full_name: `${data.first_name.trim()}${data.last_name.trim()}`,
       birth_date: moment(data.birth_date, 'DD.MM.YYYY'),
       passport_issue_date: moment(data.passport_issue_date, 'DD.MM.YYYY'),
       retired: !!data.retired
@@ -50,6 +51,7 @@ class UsersService {
 
     return User.updateOne({ _id }, {
       ...data,
+      full_name: `${data.first_name.trim()}${data.last_name.trim()}`,
       birth_date: moment(data.birth_date, 'DD.MM.YYYY'),
       passport_issue_date: moment(data.passport_issue_date, 'DD.MM.YYYY'),
       retired: !!data.retired
