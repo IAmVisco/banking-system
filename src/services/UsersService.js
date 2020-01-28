@@ -20,10 +20,10 @@ class UsersService {
   }
 
   async getRelatedData () {
-    const cities = await City.find({})
-    const citizenships = await Citizenship.find({})
-    const disabilities = await Disability.find({})
-    const martialStatuses = await MartialStatus.find({})
+    const cities = await City.find({}).sort('name')
+    const citizenships = await Citizenship.find({}).sort('name')
+    const disabilities = await Disability.find({}).sort({ name: -1 })
+    const martialStatuses = await MartialStatus.find({}).sort({ name: -1 })
 
     return {
       cities,
