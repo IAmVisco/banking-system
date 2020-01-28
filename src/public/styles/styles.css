@@ -6,7 +6,23 @@
   max-width: 560px;
 }
 
-.sidenav {
-  margin-top: 50px;
-  /*background-color: #eb0c0c;*/
+.btn-wide {
+  margin: 15px 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  .sidenav {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .sidenav {
+    margin-top: 15px;
+  }
+
+  .sidenav > ul > li {
+    display: inline;
+  }
 }

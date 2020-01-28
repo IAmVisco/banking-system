@@ -4,6 +4,10 @@
     <h1 class="page-title">Create user</h1>
     <form action="/users" method="post" class="crud-form">
         <input type="hidden" name="_method" value="{% if user %}put{% else %}post{% endif %}">
+        {% if user %}
+            <input type="hidden" name="_id" value="{{ user._id }}">
+        {% endif %}
+
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" id="firstName"
@@ -55,9 +59,17 @@
                    name="birth_place" value="{{ user.birth_place }}">
         </div>
         <div class="form-group">
-            <label for="currentCity">Current city</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="currentCity"
-                   name="current_city" value="{{ user.current_city }}">
+            <label for="currentCity">Current city</label>
+            <select class="form-control" id="currentCity" name="current_city">
+                <option value="null" disabled></option>
+                {% for city in cities %}
+                    <option value="{{ city._id }}"
+                            {% if user and city._id | string == user.current_city %}
+                                selected
+                            {% endif %}
+                    >{{ city.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
             <label for="currentAddress">Current address</label>
@@ -65,33 +77,65 @@
                    name="current_address" value="{{ user.current_address }}">
         </div>
         <div class="form-group">
-            <label for="registerCity">Register city</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="registerCity"
-                   name="registered_city" value="{{ user.registered_city }}">
+            <label for="registerCity">Register city</label>
+            <select class="form-control" id="registerCity" name="registered_city">
+                <option value="null" disabled></option>
+                {% for city in cities %}
+                    <option value="{{ city._id }}"
+                            {% if user and city._id | string == user.registered_city %}
+                                selected
+                            {% endif %}
+                    >{{ city.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <label for="martialStatus">Martial status</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="martialStatus"
-                   name="martial_status" value="{{ user.martial_status }}">
+            <label for="martialStatus">Martial status</label>
+            <select class="form-control" id="martialStatus" name="martial_status">
+                <option value="null" disabled></option>
+                {% for status in martialStatuses %}
+                    <option value="{{ status._id }}"
+                            {% if user and status._id | string == user.martial_status %}
+                                selected
+                            {% endif %}
+                    >{{ status.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <label for="citizenship">Citizenship</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="citizenship"
-                   name="citizenship" value="{{ user.citizenship }}">
+            <label for="citizenship">Citizenship</label>
+            <select class="form-control" id="citizenship" name="citizenship">
+                <option value="null" disabled></option>
+                {% for citizenship in citizenships %}
+                    <option value="{{ citizenship._id }}"
+                            {% if user and citizenship._id | string == user.citizenship %}
+                                selected
+                            {% endif %}
+                    >{{ citizenship.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <label for="disability">Disability</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="disability"
-                   name="disability" value="{{ user.disability }}">
+            <label for="disability">Disability</label>
+            <select class="form-control" id="disability" name="disability">
+                <option value="null" disabled></option>
+                {% for disability in disabilities %}
+                    <option value="{{ disability._id }}"
+                            {% if user and disability._id | string == user.disability %}
+                                selected
+                            {% endif %}
+                    >{{ disability.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-check">
             <label class="form-check-label">
                 <input type="checkbox" class="form-check-input"
-                       name="retired" value="{{ user.retired }}">
+                       name="retired" value="retired" {% if user and user.retired %} checked {% endif %}>
                 Retired
             </label>
         </div>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary btn-wide">
             {% if user %}
                 Update
             {% else %}
@@ -112,8 +156,8 @@
       })
 
       {% if user %}
-        bdPicker.state.selectedDate = new Date('{{ moment(user.birth_date) }}')
-        pidPicker.state.selectedDate = new Date('{{ moment(user.passport_issue_date) }}')
+      bdPicker.state.selectedDate = new Date('{{ moment(user.birth_date) }}')
+      pidPicker.state.selectedDate = new Date('{{ moment(user.passport_issue_date) }}')
       {% endif %}
     </script>
 {% endblock %}

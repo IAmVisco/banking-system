@@ -11,7 +11,7 @@ const userRoutes = require('./routes/users')
 const app = express()
 const port = process.env.PORT || 3001
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
 nunjucks.configure(path.join(__dirname, 'views'), {

@@ -15,7 +15,7 @@ const UserSchema = new Schema({
   birth_place: { type: String, required: true },
   current_city: { type: Schema.Types.ObjectId, ref: 'City' },
   current_address: { type: String, required: true },
-  registered_city: { type: String, required: true },
+  registered_city: { type: Schema.Types.ObjectId, ref: 'City' },
   martial_status: { type: Schema.Types.ObjectId, ref: 'MartialStatus' },
   citizenship: { type: Schema.Types.ObjectId, ref: 'Сitizenship' },
   disability: { type: Schema.Types.ObjectId, ref: 'Disability' },
