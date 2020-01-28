@@ -81,6 +81,28 @@
                    name="current_address" value="{{ user.current_address }}" required>
         </div>
         <div class="form-group">
+            <label for="mobilePhone">Mobile phone</label>
+            <input type="tel" class="form-control" id="mobilePhone"
+                   pattern="/\(\d{2,3}\)\s?\d{3}\s?\d{2}\s?\d{2}/i"
+                   placeholder="375 29 1111111/(29)1111111/375 29 111 11 11"
+                   name="mobile_phone" value="{{ user.mobile_phone }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email"
+                   name="email" value="{{ user.email }}">
+        </div>
+        <div class="form-group">
+            <label for="workPlace">Work place</label>
+            <input type="text" class="form-control" id="workPlace"
+                   name="work_place" value="{{ user.work_place }}">
+        </div>
+        <div class="form-group">
+            <label for="occupation">Occupation</label>
+            <input type="text" class="form-control" id="occupation"
+                   name="occupation" value="{{ user.occupation }}">
+        </div>
+        <div class="form-group">
             <label for="registerCity">Register city</label>
             <select class="form-control" id="registerCity" name="registered_city" required>
                 {% for city in cities %}
@@ -127,6 +149,11 @@
                     >{{ disability.name }}</option>
                 {% endfor %}
             </select>
+        </div>
+        <div class="form-group">
+            <label for="monthlyIncome">Monthly income</label>
+            <input type="number" class="form-control" id="monthlyIncome"
+                   name="monthly_income" value="{{ user.monthly_income }}">
         </div>
         <div class="form-check">
             <label class="form-check-label">

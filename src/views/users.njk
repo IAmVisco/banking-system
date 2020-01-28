@@ -14,6 +14,7 @@
             <th scope="col">ID</th>
             <th scope="col">City</th>
             <th scope="col">Martial status</th>
+            <th scope="col">Monthly income</th>
             <th scope="col">Retired</th>
             <th scope="col">Delete?</th>
         </tr>
@@ -27,6 +28,7 @@
                 <td>{{ user.id_number }}</td>
                 <td>{{ user.current_city.name }}</td>
                 <td>{{ user.martial_status.name }}</td>
+                <td>{{ user.monthly_income }}</td>
                 <td>{{ user.retired }}</td>
                 <td>
                     <form action="/users/delete" method="post" class="d-inline"

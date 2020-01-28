@@ -17,11 +17,16 @@ const UserSchema = new Schema({
   birth_place: { type: String, required: true },
   current_city: { type: Schema.Types.ObjectId, ref: 'City' },
   current_address: { type: String, required: true },
+  mobile_phone: { type: String },
+  email: { type: String },
+  work_place: { type: String },
+  occupation: { type: String },
   registered_city: { type: Schema.Types.ObjectId, ref: 'City' },
   martial_status: { type: Schema.Types.ObjectId, ref: 'MartialStatus' },
   citizenship: { type: Schema.Types.ObjectId, ref: 'Citizenship' },
   disability: { type: Schema.Types.ObjectId, ref: 'Disability' },
-  retired: { type: Boolean, required: true }
+  retired: { type: Boolean, required: true },
+  monthly_income: { type: Number }
 })
 
 module.exports = mongoose.model('User', UserSchema)
