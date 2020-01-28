@@ -6,6 +6,10 @@
   max-width: 560px;
 }
 
+.table-hover {
+  cursor: pointer;
+}
+
 .btn-wide {
   margin: 15px 0;
   width: 100%;

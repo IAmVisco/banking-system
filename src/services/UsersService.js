@@ -9,6 +9,12 @@ const MartialStatus = require('../models/martialStatus')
 class UsersService {
   async getAllUsers () {
     const users = await User.find({})
+      .sort('last_name')
+      .populate('current_city')
+      .populate('registered_city')
+      .populate('martial_status')
+      .populate('citizenship')
+      .populate('disability')
 
     return users
   }
@@ -36,9 +42,13 @@ class UsersService {
   async createUser (data) {
     delete data._method
 
+    const fullName = this._getFullName(data)
+    const passportFull = this._getFullPassword(data)
+
     return User.create({
       ...data,
-      full_name: `${data.first_name.trim()}${data.last_name.trim()}`,
+      full_name: fullName,
+      passport_full: passportFull,
       birth_date: moment(data.birth_date, 'DD.MM.YYYY'),
       passport_issue_date: moment(data.passport_issue_date, 'DD.MM.YYYY'),
       retired: !!data.retired
@@ -49,9 +59,13 @@ class UsersService {
     delete data._id
     delete data._method
 
+    const fullName = this._getFullName(data)
+    const passportFull = this._getFullPassword(data)
+
     return User.updateOne({ _id }, {
       ...data,
-      full_name: `${data.first_name.trim()}${data.last_name.trim()}`,
+      full_name: fullName,
+      passport_full: passportFull,
       birth_date: moment(data.birth_date, 'DD.MM.YYYY'),
       passport_issue_date: moment(data.passport_issue_date, 'DD.MM.YYYY'),
       retired: !!data.retired
@@ -60,6 +74,16 @@ class UsersService {
 
   async deleteUserById (_id) {
     await User.deleteOne({ _id })
+  }
+
+  // eslint-disable-next-line camelcase
+  _getFullName ({ first_name, last_name, middle_name }) {
+    return `${last_name.trim()} ${first_name.trim()} ${middle_name.trim()}`
+  }
+
+  // eslint-disable-next-line camelcase
+  _getFullPassword ({ passport_series, passport_number }) {
+    return `${passport_series.trim()}${passport_number.trim()}`
   }
 }
 
