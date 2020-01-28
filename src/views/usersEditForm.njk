@@ -3,86 +3,117 @@
 {% block content %}
     <h1 class="page-title">Create user</h1>
     <form action="/users" method="post" class="crud-form">
-        <div class="from-group">
+        <input type="hidden" name="_method" value="{% if user %}put{% else %}post{% endif %}">
+        <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="first_name" required>
+            <input type="text" class="form-control" id="firstName"
+                   name="first_name" value="{{ user.first_name }}" required>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="last_name" />
+            <input type="text" class="form-control" id="lastName"
+                   name="last_name" value="{{ user.last_name }}">
         </div>
         <div class="form-group">
             <label for="middleName">Middle Name</label>
-            <input type="text" class="form-control" id="middleName" name="middle_name" />
+            <input type="text" class="form-control" id="middleName"
+                   name="middle_name" value="{{ user.middle_name }}">
         </div>
         <div class="form-group">
             <label for="birthDate">Birth date</label>
-            <input type="text" class="form-control" id="birthDate" name="birth_date" autocomplete="off">
+            <input type="text" class="form-control" id="birthDate" autocomplete="off"
+                   name="birth_date">
         </div>
         <div class="form-group">
             <label for="passportSeries">Passport series</label>
-            <input type="text" class="form-control" id="passportSeries" name="passport_series" />
+            <input type="text" class="form-control" id="passportSeries"
+                   name="passport_series" value="{{ user.passport_series }}">
         </div>
         <div class="form-group">
             <label for="passportNumber">Passport number</label>
-            <input type="text" class="form-control" id="passportNumber" name="passport_number" />
+            <input type="text" class="form-control" id="passportNumber"
+                   name="passport_number" value="{{ user.passport_number }}">
         </div>
         <div class="form-group">
             <label for="passportIssuer">Passport issuer</label>
-            <input type="text" class="form-control" id="passportIssuer" name="passport_issuer" />
+            <input type="text" class="form-control" id="passportIssuer"
+                   name="passport_issuer" value="{{ user.passport_issuer }}">
         </div>
         <div class="form-group">
             <label for="passportIssueDate">Passport issue date</label>
-            <input type="text" class="form-control" id="passportIssueDate" name="passport_issue_date" />
+            <input type="text" class="form-control" id="passportIssueDate"
+                   name="passport_issue_date">
         </div>
         <div class="form-group">
             <label for="idNumber">ID number</label>
-            <input type="text" class="form-control" id="idNumber" name="id_number" />
+            <input type="text" class="form-control" id="idNumber"
+                   name="id_number" value="{{ user.id_number }}">
         </div>
         <div class="form-group">
             <label for="birthPlace">Birth place</label>
-            <input type="text" class="form-control" id="birthPlace" name="birth_place" />
+            <input type="text" class="form-control" id="birthPlace"
+                   name="birth_place" value="{{ user.birth_place }}">
         </div>
         <div class="form-group">
             <label for="currentCity">Current city</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="currentCity" name="current_city" />
+            <input type="text" class="form-control" id="currentCity"
+                   name="current_city" value="{{ user.current_city }}">
         </div>
         <div class="form-group">
             <label for="currentAddress">Current address</label>
-            <input type="text" class="form-control" id="currentAddress" name="current_address" />
+            <input type="text" class="form-control" id="currentAddress"
+                   name="current_address" value="{{ user.current_address }}">
         </div>
         <div class="form-group">
             <label for="registerCity">Register city</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="registerCity" name="registered_city" />
+            <input type="text" class="form-control" id="registerCity"
+                   name="registered_city" value="{{ user.registered_city }}">
         </div>
         <div class="form-group">
             <label for="martialStatus">Martial status</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="martialStatus" name="martial_status" />
+            <input type="text" class="form-control" id="martialStatus"
+                   name="martial_status" value="{{ user.martial_status }}">
         </div>
         <div class="form-group">
             <label for="citizenship">Citizenship</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="citizenship" name="citizenship" />
+            <input type="text" class="form-control" id="citizenship"
+                   name="citizenship" value="{{ user.citizenship }}">
         </div>
         <div class="form-group">
             <label for="disability">Disability</label> {# TODO: MAKE SELECT #}
-            <input type="text" class="form-control" id="disability" name="disability" />
+            <input type="text" class="form-control" id="disability"
+                   name="disability" value="{{ user.disability }}">
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="retired" value="true">Retired
+                <input type="checkbox" class="form-check-input"
+                       name="retired" value="{{ user.retired }}">
+                Retired
             </label>
         </div>
-        <button class="btn btn-primary">Create</button>
+        <button class="btn btn-primary">
+            {% if user %}
+                Update
+            {% else %}
+                Create
+            {% endif %}
+        </button>
     </form>
 {% endblock %}
 
 {% block js %}
     <script>
-      TinyDatePicker('#birthDate', {
+      const bdPicker = TinyDatePicker('#birthDate', {
         format: (date) => date.toLocaleDateString('ru-RU')
       })
-      TinyDatePicker('#passportIssueDate', {
+
+      const pidPicker = TinyDatePicker('#passportIssueDate', {
         format: (date) => date.toLocaleDateString('ru-RU')
       })
+
+      {% if user %}
+        bdPicker.state.selectedDate = new Date('{{ moment(user.birth_date) }}')
+        pidPicker.state.selectedDate = new Date('{{ moment(user.passport_issue_date) }}')
+      {% endif %}
     </script>
 {% endblock %}
