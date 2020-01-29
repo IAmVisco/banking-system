@@ -83,7 +83,7 @@
         <div class="form-group">
             <label for="mobilePhone">Mobile phone</label>
             <input type="tel" class="form-control" id="mobilePhone"
-                   pattern="/\(\d{2,3}\)\s?\d{3}\s?\d{2}\s?\d{2}/i"
+                   pattern="(\d{3})?\(?\d{2,3}\)?\s?\d{3}\s?\d{2}\s?\d{2}"
                    placeholder="375 29 1111111/(29)1111111/375 29 111 11 11"
                    name="mobile_phone" value="{{ user.mobile_phone }}">
         </div>

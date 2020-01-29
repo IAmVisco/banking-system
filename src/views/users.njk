@@ -23,7 +23,7 @@
         {% for user in users %}
             <tr onclick="window.location.pathname = '/users/{{ user._id }}';">
                 <td>{{ user.full_name }}</td>
-                <td>{{ user.birth_date }}</td>
+                <td>{{ moment(user.birth_date).format('MM.DD.YYYY') }}</td>
                 <td>{{ user.passport_full }}</td>
                 <td>{{ user.id_number }}</td>
                 <td>{{ user.current_city.name }}</td>
