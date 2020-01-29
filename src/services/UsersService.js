@@ -2,7 +2,7 @@ const moment = require('moment')
 const User = require('../models/user')
 
 const City = require('../models/city')
-const Citizenship = require('../models/citizenship')
+const Citizenship = require('../models/country')
 const Disability = require('../models/disability')
 const MartialStatus = require('../models/martialStatus')
 

@@ -14,6 +14,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "watch": "nodemon ./src/index.js -e njk,js,css",
+    "seed": "node ./src/seed.js",
     "lint": "eslint **/*.js"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "faker": "^4.1.0",
     "nodemon": "^2.0.2",
     "standard": "^14.3.1"
   },

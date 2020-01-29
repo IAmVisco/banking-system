@@ -6,4 +6,4 @@ const CitizenshipSchema = new Schema({
   name: { type: String, required: true, trim: true }
 })
 
-module.exports = mongoose.model('Citizenship', CitizenshipSchema)
+module.exports = mongoose.model('Country', CitizenshipSchema)
