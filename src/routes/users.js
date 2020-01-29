@@ -8,14 +8,15 @@ const router = express.Router()
 router.get('/', asyncHandler(async (req, res) => {
   const users = await usersService.getAllUsers()
 
-  res.render('users.njk', { users, moment })
+  res.render('users.njk', { users, moment, title: 'Users list' })
 }))
 
 router.get('/create', asyncHandler(async (req, res) => {
   const relatedData = await usersService.getRelatedData()
 
   res.render('usersEditForm.njk', {
-    ...relatedData
+    ...relatedData,
+    title: 'User create'
   })
 }))
 
@@ -27,6 +28,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
   res.render('usersEditForm.njk', {
     ...relatedData,
+    title: 'User edit',
     moment,
     user
   })

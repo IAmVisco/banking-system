@@ -1,3 +1,7 @@
+.fake-readonly {
+  background-color: inherit !important;
+}
+
 .page-title {
   display: inline;
 }

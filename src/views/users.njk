@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         {% for user in users %}
-            <tr onclick="window.location.replace('/users/{{ user._id }}');">
+            <tr onclick="window.location.pathname = '/users/{{ user._id }}';">
                 <td>{{ user.full_name }}</td>
                 <td>{{ user.birth_date }}</td>
                 <td>{{ user.passport_full }}</td>
