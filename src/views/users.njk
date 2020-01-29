@@ -24,7 +24,7 @@
             <tr onclick="window.location.pathname = '/users/{{ user._id }}';">
                 <td>{{ user.full_name }}</td>
                 <td>{{ moment(user.birth_date).format('MM.DD.YYYY') }}</td>
-                <td>{{ user.passport_full }}</td>
+                <td style="text-transform:uppercase">{{ user.passport_full }}</td>
                 <td>{{ user.id_number }}</td>
                 <td>{{ user.current_city.name }}</td>
                 <td>{{ user.martial_status.name }}</td>

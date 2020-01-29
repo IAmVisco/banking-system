@@ -35,6 +35,7 @@
             <label for="passportSeries">Passport series</label>
             <input type="text" class="form-control" id="passportSeries"
                    onkeypress="return /[a-z]/i.test(event.key)" maxlength="2"
+                   style="text-transform:uppercase"
                    name="passport_series" value="{{ user.passport_series }}" required>
         </div>
         <div class="form-group">
