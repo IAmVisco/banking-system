@@ -1,5 +1,5 @@
-const faker = require('faker')
 require('./config/database')
+const faker = require('faker')
 const City = require('./models/city')
 const Country = require('./models/country')
 const Disability = require('./models/disability')
@@ -15,7 +15,7 @@ const createDisability = () => ({ name: faker.lorem.word() })
 const main = async () => {
   let cities
   if (await City.estimatedDocumentCount() === 0) {
-    cities = await City.create(Array(5).fill(null).map(createCity))
+    cities = await City.create(Array(15).fill(null).map(createCity))
     console.log('Seeded cities')
   } else {
     cities = await City.find({})
@@ -23,7 +23,7 @@ const main = async () => {
 
   let countries
   if (await Country.estimatedDocumentCount() === 0) {
-    countries = await Country.create(Array(5).fill(null).map(createCountry))
+    countries = await Country.create(Array(15).fill(null).map(createCountry))
     console.log('Seeded countries')
   } else {
     countries = await Country.find({})
