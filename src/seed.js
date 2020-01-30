@@ -15,7 +15,7 @@ const createDisability = () => ({ name: faker.lorem.word() })
 const main = async () => {
   let cities
   if (await City.estimatedDocumentCount() === 0) {
-    cities = await City.create(Array(15).fill(null).map(createCity))
+    cities = await City.create(Array(5).fill(null).map(createCity))
     console.log('Seeded cities')
   } else {
     cities = await City.find({})
@@ -23,7 +23,7 @@ const main = async () => {
 
   let countries
   if (await Country.estimatedDocumentCount() === 0) {
-    countries = await Country.create(Array(15).fill(null).map(createCountry))
+    countries = await Country.create(Array(5).fill(null).map(createCountry))
     console.log('Seeded countries')
   } else {
     countries = await Country.find({})
@@ -39,7 +39,11 @@ const main = async () => {
 
   let martialStatuses
   if (await MartialStatus.estimatedDocumentCount() === 0) {
-    martialStatuses = await MartialStatus.create(['Single', 'Married', 'Divorced'])
+    martialStatuses = await MartialStatus.create([
+      { name: 'Single' },
+      { name: 'Married' },
+      { name: 'Divorced' }
+    ])
     console.log('Seeded martial statuses')
   } else {
     martialStatuses = await MartialStatus.find({})
