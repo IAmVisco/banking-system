@@ -6,6 +6,7 @@ Really cheap take on something that should be a banking system.
 ```
 yarn install
 ```
+Make sure you have `DATABASE_URL` enviromental variable that points to your local or [Mongo Atlas](https://www.mongodb.com/cloud/atlas) MongoDB.
 Dev server with hot reload:
 ```
 yarn run watch 
