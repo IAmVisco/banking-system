@@ -1,0 +1,41 @@
+{% extends "../index.njk" %}
+
+{% block content %}
+    <h1 class="mt-3">Create deposit</h1>
+    <form action="/deposits" method="post" class="crud-form">
+        <div class="form-group">
+            <label for="owner">Deposit holder</label>
+            <select class="form-control" id="owner" name="owner" required>
+                {% for user in users %}
+                    <option value="{{ user._id }}">{{ user.full_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="type">Deposit type</label>
+            <select class="form-control" id="type" name="type" required>
+                <option value="1">Revocable</option>
+                <option value="2">Irrevocable</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="currency">Deposit holder</label>
+            <select class="form-control" id="currency" name="currency" required>
+                {% for currency in currencies %}
+                    <option value="{{ currency._id }}">{{ currency.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="sum">Deposit sum</label>
+            <input type="number" class="form-control" id="sum"
+                   name="sum" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="percent">Deposit percent</label>
+            <input type="number" class="form-control" id="percent"
+                   name="percent" min="0" max="100" required>
+        </div>
+        <button class="btn btn-primary btn-wide">💾 Create</button>
+    </form>
+{% endblock %}

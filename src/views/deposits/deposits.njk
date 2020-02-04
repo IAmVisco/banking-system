@@ -5,32 +5,36 @@
         <h1 class="page-title">Deposits page</h1>
         <a class="btn btn-success float-right mr-3 mt-2" href="deposits/create">➕ Create</a>
     </div>
-    <table class="table table-hover mt-5">
+    {% if alert %}
+        <div class="mt-3 alert alert-{{ alert.type | default('primary') }}" role="alert">
+            {{ alert.message }}
+        </div>
+    {% endif %}
+    <table class="table table-striped mt-4">
         <thead>
         <tr>
             <th scope="col">Client</th>
             <th scope="col">Type</th>
+            <th scope="col">Initial sum</th>
             <th scope="col">Balance</th>
             <th scope="col">Percentage</th>
-{#            <th scope="col">City</th>#}
-{#            <th scope="col">Martial status</th>#}
-{#            <th scope="col">Monthly income</th>#}
-{#            <th scope="col">Retired</th>#}
-{#            <th scope="col">Delete?</th>#}
+            <th scope="col">Operation</th>
         </tr>
         </thead>
         <tbody>
         {% for deposit in deposits %}
             <tr>
-                <td><a href="/users/{{ deposit.user._id }}">{{ deposit.user.full_name }}</a></td>
+                <td><a href="/users/{{ deposit.owner._id }}">{{ deposit.owner.full_name }}</a></td>
                 <td>{{ 'Revocable' if deposit.type == 1 else 'Irrevocable' }}</td>
-                <td>{{ deposit.sum }}</td>
-                <td>{{ deposit.percent }} %</td>
+                <td>{{ deposit.sum }}{{ deposit.currency.symbol }}</td>
+                <td>{{ deposit.balance }}{{ deposit.currency.symbol }}</td>
+                <td>{{ deposit.percent }}%</td>
                 <td>
-                    <form action="/deposit/delete" method="post" class="d-inline"
-                          onsubmit="return confirm('Do you really want to delete this deposit?');">
+                    <form action="/deposits/withdraw" method="post" class="d-inline">
                         <input type="hidden" name="_id" value="{{ deposit._id }}">
-                        <button class="btn btn-outline-danger">🗑️</button>
+                        <button class="btn btn-outline-secondary">
+                            {{ 'Withdraw percents' if deposit.type == 1 else 'Close deposit' }}
+                        </button>
                     </form>
                 </td>
             </tr>

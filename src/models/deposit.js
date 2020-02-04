@@ -7,6 +7,7 @@ const DepositSchema = new Schema({
   type: { type: Number, required: true },
   currency: { type: Schema.Types.ObjectId, ref: 'Currency' },
   sum: { type: Number, require: true },
+  balance: { type: Number, require: true },
   percent: { type: Number, required: true }
 
   // maybe some other time
@@ -15,4 +16,4 @@ const DepositSchema = new Schema({
   // deposit_duration: { type: Number, required: true }, // duration in secs
 })
 
-module.exports = mongoose.model('Account', DepositSchema)
+module.exports = mongoose.model('Deposit', DepositSchema)
