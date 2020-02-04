@@ -24,6 +24,19 @@ router.get('/create', asyncHandler(async (req, res) => {
   })
 }))
 
+router.post('/process', asyncHandler(async (req, res) => {
+  const deposits = await depositService.getAllDeposits()
+
+  const updatePromises = deposits.map(d => {
+    d.balance = d.balance * (1 + d.percent / 100)
+    return d.save()
+  })
+
+  await Promise.all(updatePromises)
+
+  res.redirect('/deposits')
+}))
+
 router.post('/withdraw', asyncHandler(async (req, res) => {
   const { _id } = req.body
 

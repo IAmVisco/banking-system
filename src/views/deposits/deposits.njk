@@ -3,7 +3,12 @@
 {% block content %}
     <div class="mt-3">
         <h1 class="page-title">Deposits page</h1>
-        <a class="btn btn-success float-right mr-3 mt-2" href="deposits/create">➕ Create</a>
+        <div class="mr-3 mt-2 d-inline">
+            <a class="btn btn-success float-right ml-3" href="deposits/create">➕ Create</a>
+            <form action="/deposits/process" method="post" class="d-inline">
+                <button class="btn btn-primary float-right">Close banking day</button>
+            </form>
+        </div>
     </div>
     {% if alert %}
         <div class="mt-3 alert alert-{{ alert.type | default('primary') }}" role="alert">
