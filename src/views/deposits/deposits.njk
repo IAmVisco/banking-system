@@ -4,15 +4,15 @@
     <div class="mt-3">
         <h1 class="page-title">Deposits page</h1>
         <div class="mr-3 mt-2 d-inline">
-            <a class="btn btn-success float-right ml-3" href="deposits/create">➕ Create</a>
+            <a class="btn btn-outline-success float-right ml-3" href="/deposits/create">➕ Create</a>
             <form action="/deposits/process" method="post" class="d-inline">
-                <button class="btn btn-primary float-right">Close banking day</button>
+                <button class="btn btn-outline-primary float-right">🏦 Close banking day</button>
             </form>
         </div>
     </div>
     {% if alert %}
         <div class="mt-3 alert alert-{{ alert.type | default('primary') }}" role="alert">
-            {{ alert.message }}
+            {{ alert.message | replace('[amount]', alert.withdrawAmount.toFixed(2)) }}
         </div>
     {% endif %}
     <table class="table table-striped mt-4">
@@ -31,8 +31,8 @@
             <tr>
                 <td><a href="/users/{{ deposit.owner._id }}">{{ deposit.owner.full_name }}</a></td>
                 <td>{{ 'Revocable' if deposit.type == 1 else 'Irrevocable' }}</td>
-                <td>{{ deposit.sum }}{{ deposit.currency.symbol }}</td>
-                <td>{{ deposit.balance }}{{ deposit.currency.symbol }}</td>
+                <td>{{ deposit.sum | round(2) }}{{ deposit.currency.symbol }}</td>
+                <td>{{ deposit.balance | round(2) }}{{ deposit.currency.symbol }}</td>
                 <td>{{ deposit.percent }}%</td>
                 <td>
                     <form action="/deposits/withdraw" method="post" class="d-inline">

@@ -21,7 +21,8 @@ class DepositService {
       await deposit.save()
 
       return {
-        message: `Withdrew ${withdrawAmount}!`,
+        message: `Withdrew [amount]!`,
+        withdrawAmount,
         style: 'success'
       }
     } else if (deposit.type === this.IRREVOCABLE_TYPE) {
@@ -30,7 +31,8 @@ class DepositService {
       await Deposit.deleteOne({ _id })
 
       return {
-        message: `Withdrew ${withdrawAmount} and closed deposit!`,
+        message: `Withdrew [amount] and closed the deposit!`,
+        withdrawAmount,
         style: 'success'
       }
     } else {
