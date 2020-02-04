@@ -15,7 +15,7 @@
     "start": "node ./src/index.js",
     "watch": "nodemon ./src/index.js -e njk,js,css",
     "seed": "node ./src/seed.js",
-    "lint": "eslint **/*.js"
+    "lint": "eslint --fix **/*.js"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

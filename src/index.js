@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 
 require('./config/database')
 const userRoutes = require('./routes/users')
+const depositRoutes = require('./routes/deposits')
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/users', userRoutes)
+app.use('/deposits', depositRoutes)
 
 const server = http.createServer(app)
 

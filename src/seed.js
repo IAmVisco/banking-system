@@ -4,6 +4,7 @@ const City = require('./models/city')
 const Country = require('./models/country')
 const Disability = require('./models/disability')
 const MartialStatus = require('./models/martialStatus')
+const Currency = require('./models/currency')
 const User = require('./models/user')
 
 const USERS_TO_GENERATE = 5
@@ -49,6 +50,18 @@ const main = async () => {
     martialStatuses = await MartialStatus.find({})
   }
 
+  let currencies
+  if (await Currency.estimatedDocumentCount() === 0) {
+    currencies = await MartialStatus.create([
+      { name: 'US Dollar', short_name: 'USD', symbol: '$' },
+      { name: 'Euro', short_name: 'EUR', symbol: '€' },
+      { name: 'Belorussian Rouble', short_name: 'BYN', symbol: 'Br' }
+    ])
+    console.log('Seeded currencies')
+  } else {
+    currencies = await MartialStatus.find({})
+  }
+
   const users = Array(USERS_TO_GENERATE).fill(null).map(() => {
     const user = {
       first_name: faker.name.firstName(),
@@ -78,7 +91,7 @@ const main = async () => {
     return user
   })
 
-  await User.create(users)
+  const createdUsers = await User.create(users)
   console.log(`Seeded ${USERS_TO_GENERATE} users`)
 }
 

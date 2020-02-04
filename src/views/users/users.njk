@@ -1,4 +1,4 @@
-{% extends "index.njk" %}
+{% extends "../index.njk" %}
 
 {% block content %}
     <div class="mt-3">
@@ -24,17 +24,17 @@
             <tr onclick="window.location.pathname = '/users/{{ user._id }}';">
                 <td>{{ user.full_name }}</td>
                 <td>{{ moment(user.birth_date).format('MM.DD.YYYY') }}</td>
-                <td style="text-transform:uppercase">{{ user.passport_full }}</td>
+                <td style="text-transform: uppercase;">{{ user.passport_full }}</td>
                 <td>{{ user.id_number }}</td>
                 <td>{{ user.current_city.name }}</td>
                 <td>{{ user.martial_status.name }}</td>
                 <td>{{ user.monthly_income }}</td>
-                <td>{{ user.retired }}</td>
+                <td>{{ '✔' if user.retired else '❌' }}</td>
                 <td>
                     <form action="/users/delete" method="post" class="d-inline"
                           onsubmit="return confirm('Do you really want to delete this user?');">
                         <input type="hidden" name="_id" value="{{ user._id }}">
-                        <button class="btn btn-danger">🗑️</button>
+                        <button class="btn btn-outline-danger">🗑️</button>
                     </form>
                 </td>
             </tr>
