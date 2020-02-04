@@ -52,7 +52,7 @@ const main = async () => {
 
   let currencies
   if (await Currency.estimatedDocumentCount() === 0) {
-    currencies = await MartialStatus.create([
+    currencies = await Currency.create([
       { name: 'US Dollar', short_name: 'USD', symbol: '$' },
       { name: 'Euro', short_name: 'EUR', symbol: '€' },
       { name: 'Belorussian Rouble', short_name: 'BYN', symbol: 'Br' }
