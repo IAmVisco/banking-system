@@ -2,6 +2,7 @@ require('./config/database')
 const faker = require('faker')
 const City = require('./models/city')
 const Country = require('./models/country')
+const Deposit = require('./models/deposit')
 const Disability = require('./models/disability')
 const MartialStatus = require('./models/martialStatus')
 const Currency = require('./models/currency')
@@ -59,10 +60,10 @@ const main = async () => {
     ])
     console.log('Seeded currencies')
   } else {
-    currencies = await MartialStatus.find({})
+    currencies = await Currency.find({})
   }
 
-  const users = Array(USERS_TO_GENERATE).fill(null).map(() => {
+  const usersObjects = Array(USERS_TO_GENERATE).fill(null).map(() => {
     const user = {
       first_name: faker.name.firstName(),
       last_name: faker.name.lastName(),
@@ -91,8 +92,26 @@ const main = async () => {
     return user
   })
 
-  const createdUsers = await User.create(users)
+  await User.create(usersObjects)
   console.log(`Seeded ${USERS_TO_GENERATE} users`)
+  const users = await User.find({})
+
+  const deposits = Array(USERS_TO_GENERATE).fill(null).map(() => {
+    const sum = faker.random.number(9999)
+    const deposit = {
+      owner: users[Math.floor(Math.random() * users.length)]._id,
+      type: Math.random() < 0.5 ? 0 : 1,
+      currency: currencies[Math.floor(Math.random() * currencies.length)]._id,
+      sum,
+      balance: sum,
+      percent: faker.random.number(15)
+    }
+
+    return deposit
+  })
+
+  await Deposit.create(deposits)
+  console.log(`Seeded ${USERS_TO_GENERATE} deposits`)
 }
 
 main().then(() => {
