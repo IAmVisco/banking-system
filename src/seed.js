@@ -100,7 +100,7 @@ const main = async () => {
     const sum = faker.random.number(9999)
     const deposit = {
       owner: users[Math.floor(Math.random() * users.length)]._id,
-      type: Math.random() < 0.5 ? 0 : 1,
+      type: Math.random() < 0.5 ? 1 : 2,
       currency: currencies[Math.floor(Math.random() * currencies.length)]._id,
       sum,
       balance: sum,
